@@ -9,7 +9,7 @@ class EventHall(models.Model):
     city = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
     maximum_number_of_guests = models.IntegerField()
-    options = models.ManyToManyField("HallOption", related_name="hall_options", blank=True, null=True)
+    options = models.ManyToManyField("HallOption", related_name="hall_options", blank=True)
     phone = models.IntegerField()
     email = models.EmailField()
 
@@ -49,7 +49,7 @@ class Event(models.Model):
     price = models.IntegerField()
     contractors = models.ManyToManyField('Contractor', related_name='events', blank=True)
     style = models.ForeignKey("Style", on_delete=models.CASCADE)
-    guests = models.ManyToManyField("Guest", related_name="event_guests", blank=True, null=True)
+    guests = models.ManyToManyField("Guest", related_name="event_guests", blank=True)
 
     def __str__(self):
         return f"{self.name} - {self.event_type.name}"

@@ -4,7 +4,6 @@ Django==4.2.2
 djangorestframework==3.14.0
 greenlet==3.0.2
 inflect==7.0.0
-pydantic==2.5.2
 pydantic_core==2.14.5
 pytz==2023.3.post1
 sqlacodegen==2.3.0.post1
