@@ -9,8 +9,6 @@ class HallOptionSerializer(serializers.ModelSerializer):
 
 
 class EventHallSerializer(serializers.ModelSerializer):
-    options = HallOptionSerializer(many=True, read_only=True)
-
     class Meta:
         model = EventHall
         fields = ['id', 'name', 'city', 'address', 'maximum_number_of_guests', 'options', 'phone', 'email']
@@ -37,16 +35,13 @@ class ContractorSerializer(serializers.ModelSerializer):
 class GuestSerializer(serializers.ModelSerializer):
     class Meta:
         model = Guest
-        fields = ['id', 'first_name', 'last_name', 'adult', 'sex']
+        fields = ['id', 'first_name', 'last_name', 'adult', 'sex', 'phone', 'email']
 
 
 class EventSerializer(serializers.ModelSerializer):
-    contractors = ContractorSerializer(many=True, read_only=True)
-    style = StyleSerializer()
-
     class Meta:
         model = Event
-        fields = ['id', 'name', 'number_of_guests', 'customer', 'event_type', 'date', 'price', 'contractors', 'style']
+        fields = ['id', 'name', 'number_of_guests', 'customer', 'event_type', 'date', 'price', 'contractors', 'style', 'guests']
 
 
 class OrderSerializer(serializers.ModelSerializer):
@@ -56,8 +51,6 @@ class OrderSerializer(serializers.ModelSerializer):
 
 
 class OrganizerSerializer(serializers.ModelSerializer):
-    events_organized = EventSerializer(many=True, read_only=True)
-
     class Meta:
         model = Organizer
-        fields = ['id', 'first_name', 'last_name', 'position', 'events_organized']
+        fields = ['id', 'first_name', 'last_name', 'position', 'events_organized', 'phone', 'email']

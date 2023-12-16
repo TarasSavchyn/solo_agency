@@ -11,4 +11,4 @@
 #
 # urlpatterns = router.urls
 #
-# app_name = "agency"
+app_name = "agency"

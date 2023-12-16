@@ -10,7 +10,7 @@ class EventHall(models.Model):
     address = models.CharField(max_length=255)
     maximum_number_of_guests = models.IntegerField()
     options = models.ManyToManyField("HallOption", related_name="hall_options", blank=True)
-    phone = models.IntegerField()
+    phone = models.CharField(max_length=13)
     email = models.EmailField()
 
     class Meta:
@@ -97,6 +97,9 @@ class Organizer(models.Model):
     last_name = models.CharField(max_length=63)
     position = models.CharField(max_length=63)
     events_organized = models.ManyToManyField(Event, related_name='organizers', blank=True)
+    phone = models.CharField(max_length=13)
+    email = models.EmailField()
+
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.position}"
@@ -121,6 +124,9 @@ class Guest(models.Model):
     last_name = models.CharField(max_length=63)
     adult = models.BooleanField()
     sex = models.CharField(max_length=6, choices=SEX_CHOICES)
+    phone = models.CharField(max_length=13, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
+
 
     class Meta:
         ordering = ['last_name', 'first_name']
