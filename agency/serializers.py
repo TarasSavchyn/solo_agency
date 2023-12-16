@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import EventHall, EventType, Event, Style, Contractor, Order, Organizer, HallOption, Guest
+from .models import EventHall, EventType, Event, Contractor, Order, Organizer, HallOption, Guest
 
 
 class HallOptionSerializer(serializers.ModelSerializer):
@@ -20,12 +20,6 @@ class EventTypeSerializer(serializers.ModelSerializer):
         fields = ['id', 'name']
 
 
-class StyleSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Style
-        fields = ['id', 'style']
-
-
 class ContractorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contractor
@@ -41,7 +35,18 @@ class GuestSerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ['id', 'name', 'number_of_guests', 'customer', 'event_type', 'date', 'price', 'contractors', 'style', 'guests']
+        fields = [
+            'id',
+            'name',
+            'number_of_guests',
+            'customer',
+            'event_type',
+            'date',
+            'price',
+            'contractors',
+            'style',
+            'guests'
+        ]
 
 
 class OrderSerializer(serializers.ModelSerializer):

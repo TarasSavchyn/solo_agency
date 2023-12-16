@@ -1,5 +1,5 @@
 from django.contrib import admin
-from agency.models import (EventHall, EventType, Event, Style, Contractor, Order, Organizer, HallOption, Guest)
+from agency.models import (EventHall, EventType, Event, Contractor, Order, Organizer, HallOption, Guest)
 
 
 @admin.register(EventHall)
@@ -18,12 +18,6 @@ class EventTypeAdmin(admin.ModelAdmin):
 class EventAdmin(admin.ModelAdmin):
     list_display = ('name', 'customer', 'event_type', 'date', 'price')
     search_fields = ('name', 'customer__first_name', 'customer__last_name', 'event_type__name')
-
-
-@admin.register(Style)
-class StyleAdmin(admin.ModelAdmin):
-    list_display = ('style',)
-    search_fields = ('style',)
 
 
 @admin.register(Contractor)

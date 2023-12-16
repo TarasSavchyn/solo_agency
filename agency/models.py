@@ -40,21 +40,6 @@ class EventType(models.Model):
         return self.name
 
 
-class Event(models.Model):
-    name = models.CharField(max_length=63)
-    number_of_guests = models.IntegerField()
-    customer = models.ForeignKey(User, on_delete=models.CASCADE)
-    event_type = models.OneToOneField(EventType, on_delete=models.CASCADE)
-    date = models.DateField()
-    price = models.IntegerField()
-    contractors = models.ManyToManyField('Contractor', related_name='events', blank=True)
-    style = models.ForeignKey("Style", on_delete=models.CASCADE)
-    guests = models.ManyToManyField("Guest", related_name="event_guests", blank=True)
-
-    def __str__(self):
-        return f"{self.name} - {self.event_type.name}"
-
-
 STYLE_CHOICES = (
     ('white', 'White'),
     ('black', 'Black'),
@@ -66,11 +51,19 @@ STYLE_CHOICES = (
 )
 
 
-class Style(models.Model):
+class Event(models.Model):
+    name = models.CharField(max_length=63)
+    number_of_guests = models.IntegerField()
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    event_type = models.OneToOneField(EventType, on_delete=models.CASCADE)
+    date = models.DateField()
+    price = models.IntegerField()
+    contractors = models.ManyToManyField('Contractor', related_name='events', blank=True)
     style = models.CharField(max_length=20, choices=STYLE_CHOICES)
+    guests = models.ManyToManyField("Guest", related_name="event_guests", blank=True)
 
     def __str__(self):
-        return self.style
+        return f"{self.name} - {self.event_type.name}"
 
 
 class Contractor(models.Model):
