@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "agency.apps.AgencyConfig",
-    "agency",
 ]
 
 MIDDLEWARE = [
@@ -102,7 +101,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = "agency.Organizer"
+
 
 
 # Internationalization
