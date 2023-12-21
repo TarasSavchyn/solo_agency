@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Service, Agency, EventType, Organizer, Event, Advice, Review
+from agency.models import Service, Agency, EventType, Organizer, Event, Advice, Review
 
 
 class ServiceSerializer(serializers.ModelSerializer):

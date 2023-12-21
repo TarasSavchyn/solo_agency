@@ -1,5 +1,5 @@
 from rest_framework.routers import DefaultRouter
-from .views import (
+from agency.views import (
     ServiceViewSet,
     AgencyViewSet,
     EventTypeViewSet,
@@ -10,13 +10,13 @@ from .views import (
 )
 
 router = DefaultRouter()
-router.register(r'services', ServiceViewSet)
-router.register(r'agencies', AgencyViewSet)
-router.register(r'event-types', EventTypeViewSet)
-router.register(r'organizers', OrganizerViewSet)
-router.register(r'events', EventViewSet)
-router.register(r'advices', AdviceViewSet)
-router.register(r'reviews', ReviewViewSet)
+router.register(r"services", ServiceViewSet)
+router.register(r"agencies", AgencyViewSet)
+router.register(r"event-types", EventTypeViewSet)
+router.register(r"organizers", OrganizerViewSet)
+router.register(r"events", EventViewSet)
+router.register(r"advices", AdviceViewSet)
+router.register(r"reviews", ReviewViewSet)
 
 urlpatterns = router.urls
 

@@ -15,9 +15,17 @@ class Agency(models.Model):
     agency_values = models.TextField()
     services = models.ManyToManyField(Service)
 
-    @staticmethod
-    def create_or_get_agency():
-        return Agency.objects.get_or_create(pk=1)
+    @classmethod
+    def get_or_create_agency(cls):
+        return cls.objects.get_or_create(pk=1)
+
+    def save(self, *args, **kwargs):
+        if not self.pk and Agency.objects.filter(pk=1).exists():
+            raise ValueError("Only one instance of Agency is allowed.")
+        super().save(*args, **kwargs)
+
+    class Meta:
+        verbose_name_plural = "Agency"
 
 
 class EventType(models.Model):
