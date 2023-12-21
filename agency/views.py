@@ -1,76 +1,39 @@
-from rest_framework import serializers
+from rest_framework import viewsets
 from .models import Service, Agency, EventType, Organizer, Event, Advice, Review
+from .serializers import (
+    ServiceSerializer,
+    AgencySerializer,
+    EventTypeSerializer,
+    OrganizerSerializer,
+    EventSerializer,
+    AdviceSerializer,
+    ReviewSerializer,
+)
 
+class ServiceViewSet(viewsets.ModelViewSet):
+    queryset = Service.objects.all()
+    serializer_class = ServiceSerializer
 
-class ServiceSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Service
-        fields = ("id", "name", "description")
+class AgencyViewSet(viewsets.ModelViewSet):
+    queryset = Agency.objects.all()
+    serializer_class = AgencySerializer
 
+class EventTypeViewSet(viewsets.ModelViewSet):
+    queryset = EventType.objects.all()
+    serializer_class = EventTypeSerializer
 
-class AgencySerializer(serializers.ModelSerializer):
-    services = ServiceSerializer(many=True, read_only=True)
+class OrganizerViewSet(viewsets.ModelViewSet):
+    queryset = Organizer.objects.all()
+    serializer_class = OrganizerSerializer
 
-    class Meta:
-        model = Agency
-        fields = ("id", "name", "description", "agency_values", "services")
+class EventViewSet(viewsets.ModelViewSet):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
 
+class AdviceViewSet(viewsets.ModelViewSet):
+    queryset = Advice.objects.all()
+    serializer_class = AdviceSerializer
 
-class EventTypeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = EventType
-        fields = ("id", "name", "description")
-
-
-class OrganizerSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Organizer
-        fields = (
-            "id",
-            "description",
-            "first_name",
-            "last_name",
-            "position",
-            "phone",
-            "email",
-            "full_name",
-        )
-
-
-class EventSerializer(serializers.ModelSerializer):
-    organizers = OrganizerSerializer(many=True)
-
-    class Meta:
-        model = Event
-        fields = (
-            "id",
-            "organizers",
-            "description",
-            "name",
-            "number_of_guests",
-            "event_type",
-            "date",
-            "style",
-            "user",
-            "created_at",
-        )
-
-
-class AdviceSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Advice
-        fields = ("id", "question", "answer")
-
-
-class ReviewSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Review
-        fields = (
-            "id",
-            "user",
-            "text",
-            "rating",
-            "created_at",
-            "updated_at",
-            "is_approved",
-        )
+class ReviewViewSet(viewsets.ModelViewSet):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
